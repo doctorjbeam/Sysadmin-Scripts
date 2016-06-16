@@ -143,14 +143,4 @@ Connect-MsolService -Credential $Cred;
 Set-O365LicensesForGroup "O365-Staff" "wheelershillsc:STANDARDWOFFPACK_IW_FACULTY" @("YAMMER_EDU", "MCOSTANDARD"); 
 Set-O365LicensesForGroup "O365-Student" "wheelershillsc:STANDARDWOFFPACK_IW_STUDENT" @("YAMMER_EDU", "MCOSTANDARD"); 
 
-# Set the timezone and language for all users
-Write-Output "Setting the timezone and langauge for all users";
-
-$Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.outlook.com/powershell -Credential $Cred -Authentication Basic -AllowRedirection
-Import-PSSession $Session -AllowClobber
-
-Get-Mailbox -Filter {RecipientTypeDetails -eq 'UserMailbox'} | Set-MailboxRegionalConfiguration -Timezone "AUS Eastern Standard Time" -Language 3081
-
-Remove-PSSession $Session; 
-
 Stop-Transcript; 
