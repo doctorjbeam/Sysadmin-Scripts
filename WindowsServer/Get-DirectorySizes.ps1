@@ -1,0 +1,1 @@
+Get-DirStats -Path "Q:\Users\Staff" | Sort-Object -Property Size
