@@ -150,6 +150,7 @@ Connect-MsolService -Credential $Cred;
 
 # Office 365 Education Plus for Faculty
 Set-O365LicensesForGroup "O365-Staff" "wheelershillsc:STANDARDWOFFPACK_IW_FACULTY" @("YAMMER_EDU", "MCOSTANDARD", "EXCHANGE_S_STANDARD"); 
+Set-O365LicensesForGroup "O365-Student" "wheelershillsc:STANDARDWOFFPACK_IW_STUDENT" @("YAMMER_EDU", "MCOSTANDARD", "EXCHANGE_S_STANDARD"); 
 
 # Set the timezone and language for all users
 Write-Output "Setting the timezone and langauge for all users";
