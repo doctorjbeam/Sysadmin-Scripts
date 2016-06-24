@@ -52,18 +52,27 @@ function Set-O365LicensesForGroup {
 		
 		[System.Collections.ArrayList]$ArrayList = $userDisabledPlans; 
 		
-		# Check if the user is in the staff Yammer group
+		# Check if the user is in the Yammer group
 		$hasYammer = (isUserInGroup "O365-Staff-Yammer" $User.SamAccountName) -or (isUserInGroup "O365-Student-Yammer" $User.SamAccountName); 
 		
 		if ($hasYammer) {
 			$ArrayList.Remove("YAMMER_EDU"); 
 		}
 		
-		# Check if the user is in the staff Lync group
+		# Check if the user is in the Lync group
 		$hasLync = (isUserInGroup "O365-Staff-Lync" $User.SamAccountName) -or (isUserInGroup "O365-Student-Lync" $User.SamAccountName); 
 		
 		if ($hasLync) {
 			$ArrayList.Remove("MCOSTANDARD"); 
+		}
+		
+		# Check if the user is in the Exchange Online group
+		$hasExchangeOnline = (isUserInGroup "O365-Staff-ExchangeOnline" $User.SamAccountName) -or (isUserInGroup "O365-Student-ExchangeOnline" $User.SamAccountName); 
+		
+		if ($hasExchangeOnline) {
+			# Remove ExchangeOnline from the list of plans to disable from the user's license
+			# i.e. keep it!
+			$ArrayList.Remove("EXCHANGE_S_STANDARD"); 
 		}
 		
 		$userDisabledPlans = $ArrayList; 
@@ -140,7 +149,17 @@ $Cred = New-Object System.Management.Automation.PSCredential ("admin@wheelershil
 Connect-MsolService -Credential $Cred;
 
 # Office 365 Education Plus for Faculty
-Set-O365LicensesForGroup "O365-Staff" "wheelershillsc:STANDARDWOFFPACK_IW_FACULTY" @("YAMMER_EDU", "MCOSTANDARD"); 
-Set-O365LicensesForGroup "O365-Student" "wheelershillsc:STANDARDWOFFPACK_IW_STUDENT" @("YAMMER_EDU", "MCOSTANDARD"); 
+Set-O365LicensesForGroup "O365-Staff" "wheelershillsc:STANDARDWOFFPACK_IW_FACULTY" @("YAMMER_EDU", "MCOSTANDARD", "EXCHANGE_S_STANDARD"); 
+
+# Set the timezone and language for all users
+Write-Output "Setting the timezone and langauge for all users";
+
+Write-Output "Creating Exchange Online session and importing";
+$Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.outlook.com/powershell -Credential $Cred -Authentication Basic -AllowRedirection;
+Import-PSSession $Session -AllowClobber;
+
+Get-Mailbox -Filter {RecipientTypeDetails -eq 'UserMailbox'} | Set-MailboxRegionalConfiguration -Timezone "AUS Eastern Standard Time" -Language 3081
+
+Remove-PSSession $Session; 
 
 Stop-Transcript; 
