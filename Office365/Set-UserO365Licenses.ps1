@@ -7,7 +7,7 @@
 		30 - ADFS tenant
 		36 - ADFS admin username
 		42 - ADFS admin password
-		91 - Email address domain
+		56 - Email address domain
 	
 #>
 
@@ -24,7 +24,7 @@ Start-Transcript "C:\Scripts\Office 365\Set-O365Licences.log";
 	Your available SKUs will be prefixed with (probably) your .onmicrosoft.com address - eg
 	wheelershillsc:CLASSDASH_PREVIEW
 	
-	This command will show all the SKUs available to you. To resolve an SKU name to an actual product, run 
+	This command will show all the SKUs available to you. 
 #>
 
 $Office365Tenant = "wheelershillsc";
@@ -49,6 +49,12 @@ $adminPassword = Get-Content "C:\Scripts\Office 365\Credential.txt" | ConvertTo-
 	
 #>
 
+<#
+	Email address domain. If users' mail attribute does not contain this string the user will be skipped
+#>
+
+$emailDomain = "whsc.vic.edu.au";
+
 function Set-O365LicensesForGroup {
 	Param (
 		[parameter(Mandatory=$true)][string] $adGroupName, # AD security group which contains members to assign licenses to 
@@ -66,7 +72,7 @@ function Set-O365LicensesForGroup {
 	
 	foreach ($User in $GroupMembers) {
 		
-		Write-Output "-----------------------------------"; 
+		Write-Output "`n-----------------------------------`n"; 
 		
 		$userName = $User.SamAccountName; 
 		$mail = (Get-ADUser $User.distinguishedName -properties mail).mail
@@ -88,8 +94,8 @@ function Set-O365LicensesForGroup {
 		}
 		
 		# Check for an invalid email address - if it doesn't match our domain then we can assume they're not an O365 user
-		if (!$mail.Contains("whsc.vic.edu.au")) {
-			Write-Warning "!! Skipping $userName as mail attribute does not contain whsc.vic.edu.au !!"; 
+		if (!$mail.Contains($emailDomain)) {
+			Write-Warning "!! Skipping $userName as mail attribute does not contain $emailDomain !!"; 
 			continue; 
 		}
 		
@@ -126,9 +132,9 @@ function Set-O365LicensesForGroup {
 		$userDisabledPlans = $ArrayList; 
 		
 		if ($userDisabledPlans.Count -eq 0) {
-			Write-Host "Enabling all ServicePlans"; 
+			Write-Output "Enabling all ServicePlans"; 
 		} else {
-			Write-Host "ServicePlans to disable: ";
+			Write-Output "ServicePlans to disable: ";
 			$userDisabledPlans | ft; 
 		}
 		
@@ -163,7 +169,6 @@ function Set-O365LicensesForGroup {
 		Write-Output " - Assigning license for SKU with product options"; 
 		Set-MsolUserLicense -UserPrincipalName $mail -AddLicenses $o365Product -LicenseOptions $ProductOptions; 
 		
-		
 	}
 }
 
@@ -194,10 +199,10 @@ $Cred = New-Object System.Management.Automation.PSCredential ($adminUsername, $a
 Connect-MsolService -Credential $Cred;
 
 # Set Office 365 licenses for staff
-Set-O365LicensesForGroup "O365-Staff" "$Office365Tenant:STANDARDWOFFPACK_IW_FACULTY" @("YAMMER_EDU", "MCOSTANDARD", "EXCHANGE_S_STANDARD"); 
+Set-O365LicensesForGroup "O365-Staff" $Office365Tenant":STANDARDWOFFPACK_IW_FACULTY" @("YAMMER_EDU", "MCOSTANDARD", "EXCHANGE_S_STANDARD"); 
 
 # Set Office 365 licenses for students 
-Set-O365LicensesForGroup "O365-Student" "$Office365Tenant:STANDARDWOFFPACK_IW_STUDENT" @("YAMMER_EDU", "MCOSTANDARD", "EXCHANGE_S_STANDARD"); 
+Set-O365LicensesForGroup "O365-Student" $Office365Tenant":STANDARDWOFFPACK_IW_STUDENT" @("YAMMER_EDU", "MCOSTANDARD", "EXCHANGE_S_STANDARD"); 
 
 # Set the timezone and language for all users
 Write-Output "Setting the timezone and langauge for all users";
