@@ -1,0 +1,144 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20171009083002
+Username: CURRIC\task.notify.password
+RunAs User: CURRIC\task.notify.password
+Machine: WHSCDC01 (Microsoft Windows NT 6.3.9600.0)
+Host Application: Powershell.exe -F C:\Scripts\Password Expiry Warning\task.ps1
+Process ID: 4332
+PSVersion: 5.1.14409.1012
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.14409.1012
+BuildVersion: 10.0.14409.1012
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Scripts\Password Expiry Warning\transcript.log
+Script Loaded
+*** Settings Summary ***
+SMTP Server          : smtp.whsc.vic.edu.au
+Expire in Days       : 21
+From                 : IT Support <help@whsc.vic.edu.au>
+Logging              : True
+Log Path             : C:\Scripts\Password Expiry Warning\Log
+Testing              : False
+Test Recipient       :
+*************************
+Found 764 User Objects
+Domain Default Password Age: 0
+Process User Objects
+WARNING: The password for 02093974 was last changed 207 days ago
+WARNING: The password for 08495716 was last changed 171 days ago
+WARNING: The password for kr was last changed 1865 days ago
+WARNING: The password for ha was last changed 1580 days ago
+WARNING: The password for bed was last changed 829 days ago
+WARNING: The password for canteen was last changed 1808 days ago
+WARNING: The password for APA was last changed 129 days ago
+WARNING: The password for mhumphreys was last changed 437 days ago
+WARNING: The password for jhassan was last changed 409 days ago
+WARNING: The password for 08055833 was last changed 223 days ago
+87 Users processed
+29 Users to notify
+Sending Email : 02093974             :
+PS>TerminatingError(Send-MailMessage): "Cannot validate argument on parameter 'To'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
+Cannot validate argument on parameter 'To'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again.
+Sending Email : 08675787             : fdk@whsc.vic.edu.au
+send email for fdk@whsc.vic.edu.au disabled temporarily
+Sending Email : jm                   : jm@whsc.vic.edu.au
+send email for jm@whsc.vic.edu.au disabled temporarily
+Sending Email : ah                   : ah@whsc.vic.edu.au
+send email for ah@whsc.vic.edu.au disabled temporarily
+Sending Email : 08495716             : sja@whsc.vic.edu.au
+send email for sja@whsc.vic.edu.au disabled temporarily
+Sending Email : kr                   : kr@whsc.vic.edu.au
+send email for kr@whsc.vic.edu.au disabled temporarily
+Sending Email : AL                   : al@whsc.vic.edu.au
+send email for al@whsc.vic.edu.au disabled temporarily
+Sending Email : tbr                  : tbr@whsc.vic.edu.au
+send email for tbr@whsc.vic.edu.au disabled temporarily
+Sending Email : VL                   : vl@whsc.vic.edu.au
+send email for vl@whsc.vic.edu.au disabled temporarily
+Sending Email : tdu                  : tdu@whsc.vic.edu.au
+send email for tdu@whsc.vic.edu.au disabled temporarily
+Sending Email : ha                   : ha@whsc.vic.edu.au
+send email for ha@whsc.vic.edu.au disabled temporarily
+Sending Email : 09152542             : pjm@whsc.vic.edu.au
+send email for pjm@whsc.vic.edu.au disabled temporarily
+Sending Email : rcr                  : rcr@whsc.vic.edu.au
+send email for rcr@whsc.vic.edu.au disabled temporarily
+Sending Email : ERO                  : ero@whsc.vic.edu.au
+send email for ero@whsc.vic.edu.au disabled temporarily
+Sending Email : mba                  : mba@whsc.vic.edu.au
+send email for mba@whsc.vic.edu.au disabled temporarily
+Sending Email : bed                  : bed@whsc.vic.edu.au
+send email for bed@whsc.vic.edu.au disabled temporarily
+Sending Email : canteen              : canteen@whsc.vic.edu.au
+send email for canteen@whsc.vic.edu.au disabled temporarily
+Sending Email : jli                  : jli@whsc.vic.edu.au
+send email for jli@whsc.vic.edu.au disabled temporarily
+Sending Email : APA                  : apa@whsc.vic.edu.au
+send email for apa@whsc.vic.edu.au disabled temporarily
+Sending Email : CTO                  : ctoon@whsc.vic.edu.au
+send email for ctoon@whsc.vic.edu.au disabled temporarily
+Sending Email : mhumphreys           : mhumphreys@whsc.vic.edu.au
+send email for mhumphreys@whsc.vic.edu.au disabled temporarily
+Sending Email : jhassan              : jhassan@whsc.vic.edu.au
+send email for jhassan@whsc.vic.edu.au disabled temporarily
+Sending Email : rgo                  : rgo@whsc.vic.edu.au
+send email for rgo@whsc.vic.edu.au disabled temporarily
+Sending Email : twh                  : twh@whsc.vic.edu.au
+send email for twh@whsc.vic.edu.au disabled temporarily
+Sending Email : DPAT                 : dpat@whsc.vic.edu.au
+send email for dpat@whsc.vic.edu.au disabled temporarily
+Sending Email : 08055833             :
+PS>TerminatingError(Send-MailMessage): "Cannot validate argument on parameter 'To'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
+Cannot validate argument on parameter 'To'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again.
+Sending Email : bhai                 : bhai@whsc.vic.edu.au
+send email for bhai@whsc.vic.edu.au disabled temporarily
+Sending Email : rwil                 : rwil@whsc.vic.edu.au
+send email for rwil@whsc.vic.edu.au disabled temporarily
+Sending Email : pbra                 : pbra@whsc.vic.edu.au
+send email for pbra@whsc.vic.edu.au disabled temporarily
+Creating Log File
+Log Output: C:\Scripts\Password Expiry Warning\Log\9-10-2017-PasswordLog.csv
+
+UserName   Name                EmailAddress               PasswordSet           DaysToExpire ExpiresOn
+--------   ----                ------------               -----------           ------------ ---------
+jhassan    Jana Hassan         jhassan@whsc.vic.edu.au    8/25/2016 1:47:15 PM             0 12/29/2016 1:47:15 PM
+ha         Caroline Hawke      ha@whsc.vic.edu.au         6/11/2013 9:03:40 AM             0 10/15/2013 9:03:40 AM
+VL         Vincent Lam         vl@whsc.vic.edu.au         6/5/2017 3:13:05 PM              0 10/9/2017 3:13:05 PM
+mhumphreys Michaela Humphreys  mhumphreys@whsc.vic.edu.au 7/28/2016 1:46:04 PM             0 12/1/2016 1:46:04 PM
+canteen    Canteen Staff       canteen@whsc.vic.edu.au    10/26/2012 4:17:32 PM            0 3/1/2013 4:17:32 PM
+bed        Maria Bedikian      bed@whsc.vic.edu.au        7/2/2015 6:58:24 PM              0 11/5/2015 6:58:24 PM
+APA        Annette Paterson    apa@whsc.vic.edu.au        6/1/2017 2:58:30 PM              0 10/5/2017 2:58:30 PM
+02093974   Andrew P. Dixon                                3/15/2017 5:15:50 PM             0 7/19/2017 5:15:50 PM
+jm         Jane Moyle          jm@whsc.vic.edu.au         6/5/2017 3:02:45 PM              0 10/9/2017 3:02:45 PM
+08055833   Michael Garlick                                2/27/2017 11:00:01 AM            0 7/3/2017 11:00:01 AM
+kr         Kristen Retallick   kr@whsc.vic.edu.au         8/30/2012 8:50:05 AM             0 1/3/2013 8:50:05 AM
+AL         Abbey Novak         al@whsc.vic.edu.au         6/5/2017 3:10:42 PM              0 10/9/2017 3:10:42 PM
+08495716   Sandie Jackson      sja@whsc.vic.edu.au        4/20/2017 9:34:30 AM             0 8/24/2017 9:34:30 AM
+DPAT       Diane Patron        dpat@whsc.vic.edu.au       6/6/2017 9:26:05 AM              1 10/10/2017 9:26:05 AM
+tdu        Tracey Duff         tdu@whsc.vic.edu.au        6/6/2017 10:53:35 AM             1 10/10/2017 10:53:35 AM
+ah         Yiota Athanasiou    ah@whsc.vic.edu.au         6/6/2017 9:13:29 AM              1 10/10/2017 9:13:29 AM
+ERO        Elizabeth Rossmann  ero@whsc.vic.edu.au        6/6/2017 8:14:04 AM              1 10/10/2017 8:14:04 AM
+pbra       Peter Brasier       pbra@whsc.vic.edu.au       6/8/2017 9:48:36 AM              3 10/12/2017 9:48:36 AM
+09152542   Paula-Jayne Moorman pjm@whsc.vic.edu.au        6/13/2017 10:49:39 AM            8 10/17/2017 10:49:39 AM
+twh        Tracy White         twh@whsc.vic.edu.au        6/14/2017 12:50:56 PM            9 10/18/2017 12:50:56 PM
+tbr        Tane Bragg          tbr@whsc.vic.edu.au        6/14/2017 10:07:47 AM            9 10/18/2017 10:07:47 AM
+mba        Matt Bailey         mba@whsc.vic.edu.au        6/14/2017 9:30:39 AM             9 10/18/2017 9:30:39 AM
+08675787   Frida D'Costa-Kent  fdk@whsc.vic.edu.au        6/14/2017 2:21:19 PM             9 10/18/2017 2:21:19 PM
+jli        Jun Li              jli@whsc.vic.edu.au        6/14/2017 8:59:14 AM             9 10/18/2017 8:59:14 AM
+rgo        Robyn Goode         rgo@whsc.vic.edu.au        6/14/2017 1:52:07 PM             9 10/18/2017 1:52:07 PM
+rcr        Robyn Crook         rcr@whsc.vic.edu.au        6/15/2017 11:09:39 AM           10 10/19/2017 11:09:39 AM
+bhai       Barry Haines        bhai@whsc.vic.edu.au       6/16/2017 8:26:53 AM            11 10/20/2017 8:26:53 AM
+CTO        Corina Toon         ctoon@whsc.vic.edu.au      6/23/2017 8:22:15 AM            18 10/27/2017 8:22:15 AM
+rwil       Raleigh Williams    rwil@whsc.vic.edu.au       6/26/2017 2:17:52 PM            21 10/30/2017 2:17:52 PM
+
+
+Script Runtime: 00:00:07.3412778
+**********************
+Windows PowerShell transcript end
+End time: 20171009083009
+**********************
