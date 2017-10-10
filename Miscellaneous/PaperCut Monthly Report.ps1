@@ -1,4 +1,5 @@
 <#
+	Summarise the monthly sub-account reports and send to blah@blah.com
 	@author Michael Greenhill
 	@updated 10/10/2017
 #>
@@ -10,8 +11,12 @@ $file = "C:\Program Files\PaperCut MF\server\data\scheduled-reports\AccountSumma
 $modTime = (Get-Item $file).LastWriteTime; 
 $dstFileName = (Get-Date).AddMonths(-1) | Get-Date -Format "yyyy-MM MMMMM";
 $dstPath = "C:\Program Files\PaperCut MF\server\data\scheduled-reports\$dstFileName.csv"; 
+$networkSavePath = "\\super\secret\path\Printing & Photocopying\$(Get-Date -Format 'yyyy')";
 
 # Email settings
+$smtpServer = "smtp.blah.com";
+$msgFromAddress = "blah@blah.com";
+$msgToAddress = "blah@blah.com"; 
 $msgSubject = "PaperCut Account summary $dstFileName";
 
 # Start summarising
